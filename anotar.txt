@@ -1,0 +1,52 @@
+dragenter: Este evento é acionado quando o elemento sendo arrastado entra na área de destino.
+
+dragover: Este evento é acionado continuamente enquanto o elemento está sendo 
+arrastado sobre a área de destino.
+
+dragleave: Este evento é acionado quando o elemento sendo arrastado deixa a área de destino.
+
+drop: Este evento é acionado quando o elemento sendo arrastado é solto na área de destino.
+
+Certifique-se de cancelar a propagação do evento e/ou prevenir o comportamento padrão, 
+dependendo do contexto específico para garantir que os eventos drag and drop funcionem 
+corretamente.
+
+O evento dragover é necessário para permitir que elementos sejam soltos em uma área específica. 
+Quando você arrasta um elemento sobre outro, o navegador dispara o evento dragover na área 
+de destino. Este evento é necessário para indicar que a área é uma possível área de soltura 
+válida. Sem o dragover, o navegador não permitirá que você solte o elemento na área alvo.
+
+Ao chamar event.preventDefault() dentro do manipulador de eventos dragover, você está 
+indicando ao navegador que você deseja permitir a operação de soltar (drop) naquela área.
+Portanto, é uma parte essencial da implementação do recurso de arrastar e soltar.
+
+Lembre-se de que é uma prática comum, ao lidar com a API de arrastar e soltar, prevenir o 
+comportamento padrão para certos eventos, como dragover e drop, para garantir que a interface 
+funcione corretamente.
+
+example:
+let itens  = document.querySelectorAll(".item");
+let bloco1 = document.getElementById("bloco1");
+let bloco2 = document.getElementById("bloco2");
+let elementSelected;
+
+itens.forEach(item => {
+    item.addEventListener("dragstart",(e)=>{
+        elementSelected = e.target;
+    });
+});
+bloco1.addEventListener("dragover",(e)=>{
+    e.preventDefault();
+});
+bloco1.addEventListener("drop",()=>{
+    bloco1.appendChild(elementSelected);
+});
+bloco2.addEventListener("drop",()=>{
+    bloco2.appendChild(elementSelected);
+});
+bloco2.addEventListener("dragover",(e)=>{
+    e.preventDefault();
+});
+
+propriedade em HTML
+draggable = "true ou false"

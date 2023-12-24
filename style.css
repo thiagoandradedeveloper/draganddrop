@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    height: 100dvh;
+}
+.bloco{
+    padding: 20px;
+    height: auto;
+    width: 300px;
+    border: thin solid black;
+    .item{
+        padding: 20px;
+        width: 100%;
+        background: grey;
+        margin-bottom: 10px;
+        transition: 10s 2s;
+    }
+    .item:last-child{
+        margin-bottom: 0;
+    }
+}

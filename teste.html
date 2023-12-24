@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag And Drop</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            height: 100dvh;
+        }
+        #bloco1, #bloco2{
+            position: relative;
+            width: 300px;
+            border: thin solid black;
+            height: 505px;
+            padding: 20px;
+        }
+        .item{
+            padding: 20px;
+            border: thin solid black;
+            margin-bottom: 20px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="bloco1">
+        <div class="item" draggable="true">Item 1</div>
+        <div class="item" draggable="true">Item 2</div>
+        <div class="item" draggable="true">Item 3</div>
+    </div>
+    <div id="bloco2">
+        <div class="item" draggable="true">Item 4</div>
+        <div class="item" draggable="true">Item 5</div>
+        <div class="item" draggable="true">Item 6</div>
+    </div>
+    <script>
+        window.onload = () => {
+
+            let itens  = document.querySelectorAll(".item");
+            let bloco1 = document.getElementById("bloco1");
+            let bloco2 = document.getElementById("bloco2");
+            let elementSelected;
+
+            itens.forEach(item => {
+                item.addEventListener("dragstart",(e)=>{
+                    elementSelected = e.target;
+                });
+            });
+            bloco1.addEventListener("dragover",(e)=>{
+                e.preventDefault();
+            });
+            bloco1.addEventListener("drop",()=>{
+                bloco1.appendChild(elementSelected);
+            });
+            bloco2.addEventListener("drop",()=>{
+                bloco2.appendChild(elementSelected);
+            });
+            bloco2.addEventListener("dragover",(e)=>{
+                e.preventDefault();
+            });
+        }
+    </script>
+</body>
+</html>
